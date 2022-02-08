@@ -29,26 +29,18 @@ class Graph():
         h = [] # heap
         heapq.heappush(h, (self.dist[src], src))
         
-        while h:
-            
+        while h:            
             d, u = heapq.heappop(h)
-            processed.add(u)
-            h = [] # reset heap
-            
+            processed.add(u)            
+            h = []            
             for v in range(self.V):
-                if v not in processed and self.graph[u][v] > 0:
+                # Not yet processed and connected to current source u
+                if v not in processed and self.graph[u][v] > 0: 
                     self.relax(u, v)
                     heapq.heappush(h, (self.dist[v], v))
                 
         self.printSolution()
                 
-        
-        
-        
-            
-        
-        
-        
         
 
 
