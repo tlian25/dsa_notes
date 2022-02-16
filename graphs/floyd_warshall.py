@@ -1,4 +1,5 @@
-# All Pairs Shortest Path
+# All Pairs Shortest Path - Floyd Warshall
+# Finds the shortest path between every pair of nodes
 
 from typing import List
 import numpy as np
@@ -73,8 +74,13 @@ def APSP(matrix: List[List[int]]) -> List[List[int]]:
     # Loop through possible middle characters
     
     for m in range(n):
-        matrix = relaxMatrix(matrix, m)
+        # Helper function
+        # matrix = relaxMatrix(matrix, m)
         
+        for i in range(n):
+            for j in range(n):
+                matrix[i][j] = min(matrix[i][j], matrix[i][m] + matrix[m][j])
+    
     return matrix
 
 

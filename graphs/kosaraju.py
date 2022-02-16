@@ -1,4 +1,6 @@
-# Practice with Kosoraju's Algorithm
+# Kosaraju's Algorithm
+# Find connected components of a graph in linear time
+
 
 from collections import defaultdict
 
@@ -25,18 +27,18 @@ def kosaraju(g:Graph):
         edges[e[0]].append(e[1])
         edgesrev[e[1]].append(e[0])
     
-    # 1. DFS on graph with finishtime order
+    # 1. DFS on forward graph with finishtime order
     finishorder = []
     # Global seen for DFS
     seen = set()
-    def dfs1(n):
+    def dfs1(n:int) -> None:
         if n not in seen:
             seen.add(n)
             for nb in edges[n]:
                 dfs1(nb)
             finishorder.append(n)
                 
-    for n in nodes[::-1]:
+    for n in nodes:
         dfs1(n)
         
     print("Finish Order:", finishorder)
@@ -44,8 +46,8 @@ def kosaraju(g:Graph):
     # 2. DFS on reverse graph in finishtime stack order
     # Global seen for DFS
     seen = set()
-    # Track SCC for each loop and return
-    def dfs2(n, scc):
+    # Track SCC (strongly connected component) for each loop and return
+    def dfs2(n:int, scc:list=[]) -> list:
         if n not in seen:
             seen.add(n)
             scc.append(n)
