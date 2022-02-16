@@ -1,4 +1,4 @@
-# Dijkstra's Shortest Path Algorithm
+# Dijkstra's Shortest Path Algorithm - With loop to find min 
 
 from collections import defaultdict
 
@@ -36,7 +36,7 @@ class Graph():
         for _ in range(self.V): # Loop #nodes times
             
             u = self.minDistance(dist, seen)
-            seen.add(u)
+            seen.add(u) # lock
 
             for v in range(self.V):
                 dist_uv = self.graph[u][v]

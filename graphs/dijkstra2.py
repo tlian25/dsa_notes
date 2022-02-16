@@ -1,7 +1,7 @@
 
 import heapq
 
-# Dijkstra with Priority Queue
+# Dijkstra with Priority Queue / Heap implementation
 
 class Graph():
     def __init__(self, vertices:int):
