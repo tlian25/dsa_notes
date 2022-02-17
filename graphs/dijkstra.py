@@ -1,5 +1,8 @@
 # Dijkstra's Shortest Path Algorithm - With loop to find min 
 
+# Will not always work if there is a negative path weights
+# Time complexity O( (V+E) * logV) using a min heap
+
 from collections import defaultdict
 
 
