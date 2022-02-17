@@ -1,5 +1,6 @@
 # A* Algorithm in a Grid setting
 
+# Reference: https://www.annytab.com/a-star-search-algorithm-in-python/
 
 
 grid = ''' 
