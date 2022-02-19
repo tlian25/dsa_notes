@@ -31,7 +31,7 @@ class Graph:
             self.weights[dest][src] = weight
             
             
-def aStar(graph:Graph, source:str, dest:str, eucliddist:dict):
+def aStar(graph:Graph, source:str, dest:str, heurdist:dict):
     
     processed = set()
     path_order = []
@@ -40,7 +40,7 @@ def aStar(graph:Graph, source:str, dest:str, eucliddist:dict):
     dist[source] = 0
     
     # Start with source
-    totalWeight = graph.weights[source][dest] + eucliddist[source]
+    totalWeight = graph.weights[source][dest] + heurdist[source]
     heap = [(totalWeight, source)]
     
     while heap:
@@ -60,8 +60,8 @@ def aStar(graph:Graph, source:str, dest:str, eucliddist:dict):
             if nb not in processed and graph.weights[curr][nb] > 0:
                 # Relax edge
                 dist[nb] = min(dist[nb], dist[curr] + graph.weights[curr][nb])
-                # Add edge weight dist and euclidian distance (heuristic)
-                w = dist[nb] + eucliddist[nb]
+                # Add edge weight dist and heuristic distance (heuristic)
+                w = dist[nb] + heurdist[nb]
                 heappush(heap, (w, nb))
                 
     
@@ -99,7 +99,7 @@ edges = [('s', 'a', 7),
          ('l', 'c', 2)]
 
 # Heuristic - euclidian distance from DEST ('e')
-eucliddist = {'s': 10, 
+heurdist = {'s': 10, 
                 'a': 9,
                 'b': 7,
                 'c': 8,
@@ -116,4 +116,4 @@ eucliddist = {'s': 10,
 graph = Graph(nodes, edges)
 
 print()
-aStar(graph, 's', 'e', eucliddist)
+aStar(graph, 's', 'e', heurdist)
