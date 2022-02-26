@@ -77,6 +77,8 @@ class MinHeap:
     
     
     def insert(self, element):
+        # Place new element in next empty spot
+        # Recursively shift upward if smaller than parent
         if self.size >= self.maxsize:
             return # Or raise error
         
@@ -105,6 +107,7 @@ class MinHeap:
         self.Heap[self.FRONT] = self.Heap[self.size]
         self.size -= 1
         # rebalance heap
+        # Recursively swap with children if larger
         self.minHeapify(self.FRONT)
         return popped
     
