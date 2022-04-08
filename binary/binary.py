@@ -13,7 +13,15 @@ Step 3. add 1       => 101
 Step 4. Sign bit    => 1101
 '''
 
+########## Sum vs XOR ########################
 
+'''
+Important Identity Formula
+A + B = (A ^ B) + 2 * (A & B)
+
+Thus 
+A + B = (A ^ B) <==> (A & B) = 0
+'''
 
 ########## Conversion functions ##############
 
