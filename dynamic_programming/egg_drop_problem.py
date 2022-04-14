@@ -15,10 +15,10 @@ class Solution:
         # General case --> we want to find dp[m][k] --> we pick one egg and drop (1 move)
         #              --> now we have k or k-1 eggs, depending on whether the previous egg is broken
         #              --> so in either case, we can at least sum up 1 (first move) + dp[m-1][k] + dp[m-1][k-1] 
-        for i in range(1, M+1): # Floors
+        for i in range(1, M+1): # Moves
             for j in range(1, K+1): # Eggs
                 dp[i][j] = 1 + dp[i-1][j] + dp[i-1][j-1]
-                if dp[i][j] >= N:
+                if dp[i][j] >= N: # if we reach given floor N, then we can return number of moves
                     return i
 
                 

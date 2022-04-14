@@ -40,8 +40,8 @@ def aStar(graph:Graph, source:str, dest:str, heurdist:dict):
     dist[source] = 0
     
     # Start with source
-    totalWeight = graph.weights[source][dest] + heurdist[source]
-    heap = [(totalWeight, source)]
+    # (weight, node)
+    heap = [(0, source)]
     
     while heap:
         
@@ -53,12 +53,14 @@ def aStar(graph:Graph, source:str, dest:str, heurdist:dict):
             print(f"Path found: {path_order}")
             print()
             return None
-        
+
+        # Reset heap starting from new current node
         heap = []
         
+        # Add neighbors to heap based on weight
         for nb in graph.nodes:
             if nb not in processed and graph.weights[curr][nb] > 0:
-                # Relax edge
+                # Relax edge weight
                 dist[nb] = min(dist[nb], dist[curr] + graph.weights[curr][nb])
                 # Add edge weight dist and heuristic distance (heuristic)
                 w = dist[nb] + heurdist[nb]

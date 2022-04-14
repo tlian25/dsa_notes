@@ -21,8 +21,8 @@ def kosaraju(g:Graph):
     
     nodes = g.nodes
     
-    edges = defaultdict(list)
-    edgesrev = defaultdict(list)
+    edges = defaultdict(list) # Forward edges
+    edgesrev = defaultdict(list) # Reverse edges
     for e in g.edges:
         edges[e[0]].append(e[1])
         edgesrev[e[1]].append(e[0])
@@ -54,7 +54,8 @@ def kosaraju(g:Graph):
             for nb in edgesrev[n]:
                 scc = dfs2(nb, scc)
         return scc
-            
+    
+    # Process in reverse finishorder
     while finishorder:
         start = finishorder.pop()
         scc = dfs2(start, [])

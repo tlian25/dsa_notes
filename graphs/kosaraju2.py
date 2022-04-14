@@ -17,6 +17,7 @@ class Graph:
             if not visited_vertex[d]:
                 self.dfs(i, visited_vertex)
                 
+                
     def fill_order(self, d, visited_vertex):
         visited_vertex[d] = True
         for i in self.graph[d]:
