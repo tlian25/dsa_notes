@@ -1,10 +1,11 @@
 ########## Two's complement ##############
 
 '''
-1. Get positive binary representation 
+To find negative representation:
+1. Get positive binary representation (i.e. for -9, consider 9)
 2. Invert bits in positive representation
 3. Add 1
-4. Prepend sign bit (1) to front
+4. Prepend sign bit (1) to front to mark as negative
 
 Ex. for n =3
 Step 1. +ve rep     => 011
@@ -29,7 +30,7 @@ A + B = (A ^ B) <==> (A & B) = 0
 # Convert int to binary string
 def int2binstr(n:int) -> str:
     m = n # copy number to retain original value after transforms
-    n = n & 0b1111111111111111111
+    #n = n & 0b1111111111111111111
     s = "" # hold string
     while n > 0:
         i = n % 2
@@ -41,6 +42,7 @@ def int2binstr(n:int) -> str:
     return s
 
 int2binstr(-12312312)
+int2binstr(12312415)
 
 
 # Convert int to binary number
