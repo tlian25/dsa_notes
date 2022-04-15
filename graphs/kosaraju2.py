@@ -1,3 +1,6 @@
+# Kosaraju's Algorithm
+# Find connected components of a graph in linear time
+
 from collections import defaultdict
 
 class Graph:

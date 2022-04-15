@@ -28,7 +28,7 @@ from random import randint
 
 def partition(arr:list, low:int, high:int) -> None:
     # Low always marks the lowest unset index in the partition
-    # We will repeated swap numbers < pivot with low index
+    # We will repeatedly swap numbers < pivot with low index
     # Take pivot to be last/high index in this implementation
     pivot = arr[high]
     for j in range(low, high):

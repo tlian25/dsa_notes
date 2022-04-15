@@ -7,8 +7,11 @@
 
 # Same partition function as quicksort
 
-
-def partition(arr:list, low:int, high:int):
+# Return index where Pivot is placed at the end of swapping
+# Partitioning just means:
+# elements left of pivot are < pivot, not necessarily sorted
+# elements right of pivot are >= pivot, not necessarily sorted
+def partition(arr:list, low:int, high:int) -> int:
     
     pivot = arr[high]
     for j in range(low, high):
@@ -29,14 +32,20 @@ def kthLargest(arr:list, k:int):
         pivot_idx = partition(arr, i, j)
 
         #print(pivot_idx)
+        # Case 1 - pivot is k-th largest number
         if pivot_idx == len(arr)-k:
             return arr[pivot_idx]
+        # Case 2 - pivot is ranked lower than k
+        # Look at elements to right of pivot
         elif pivot_idx < len(arr)-k:
             i = pivot_idx+1
+        # Case 3 - pivot ranked higher than k
+        # Look at elements to left of pivot
         elif pivot_idx > len(arr)-k:
             j = pivot_idx-1
         
-        
+
+# Same logic as kthLargest. look at rank k instead of rank len(arr)-k
 def kthSmallest(arr:list, k:int):
     
     i = 0

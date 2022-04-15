@@ -5,10 +5,10 @@ Notes:
 A min heap is a complete binary tree
 typically represented as an array.
 Arr[0] = root
-Arr[i] = self
-Arr[ (i-1) / 2 ] = parent
-Arr[ (2*i) + 1 ] = left child
-Arr[ (2*i) + 2 ] = right child
+Arr[i] = node i
+Arr[ (i-1) // 2 ] = parent of node i
+Arr[ (2*i) + 1 ] = left child of node i
+Arr[ (2*i) + 2 ] = right child of node i
 
 Operations:
 getMin(): return root element, O(1) time complexity
