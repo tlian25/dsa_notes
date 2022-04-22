@@ -67,8 +67,6 @@ def write_around(backing_store, datum):
 # 
 # +: lower latency writes and high throughput for write-intensive apps
 # -: data availability and data loss risk if cache crashes
-
-
 def write_back(cache, datum):
     cache.write(datum)
     # Kick-off asynchronous process to write to backing store.

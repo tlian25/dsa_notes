@@ -21,13 +21,16 @@ class ConsistentHashRing:
         self._keys = []
         self._nodes = {}
         
+        
     def _hash(self, key:str) -> str:
         """Given a string key, return a hash value."""
         return hashlib.md5(key.encode('utf-8')).hexdigest()
     
+    
     def _repl_iterator(self, nodename) -> tuple:
         """Given a node name, return an iterable of replica hashes."""
         return (self._hash(f"{nodename}:{i}") for i in range(self._replicas))
+    
     
     def __setitem__(self, nodename:str, node:Node) -> None:
         """
@@ -42,12 +45,14 @@ class ConsistentHashRing:
             self._nodes[hash_] = node
             bisect.insort(self._keys, hash_)
             
+            
     def __delitem__(self, nodename:str) -> None:
         """Remove a node, given its name."""
         for hash_ in self._repl_iterator(nodename):
             del self._nodes[hash_]
             idx = bisect.bisect_left(self._keys, hash_)
             del self._keys[idx]
+    
     
     def __getitem__(self, key:str) -> Node:
         """Return a node, given a key.
