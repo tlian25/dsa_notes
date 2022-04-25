@@ -11,7 +11,11 @@ def binarySearchNearestLarger(arr:list, target:int) -> int:
     while i < j:
         mid = (i+j) // 2
         if arr[mid] == target:
+            # Slide if duplicates found
+            while mid-1 >= 0 and arr[mid-1] == target:
+                mid -= 1
             return mid
+        
         elif target < arr[mid]:
             j = mid
         else:
@@ -29,7 +33,7 @@ def binarySearchNearestSmaller(arr:list, target:int) -> int:
 
 ### TESTS
 
-arr = [2, 4, 6, 8, 10, 12, 14, 16]
+arr = [2, 4, 6, 8, 9, 10, 10, 10, 12, 14, 16]
 
 
 def test_1():
@@ -40,22 +44,22 @@ def test_1():
 def test_2():
     target = 11
     idx = binarySearchNearestLarger(arr, target)
-    assert idx == 5    
+    assert idx == 8 
 
 def test_3():
     target = 10
     idx = binarySearchNearestLarger(arr, target)
-    assert idx == 4
+    assert idx == 5
 
 def test_4():
     target = 16
     idx = binarySearchNearestLarger(arr, target)
-    assert idx == 7
+    assert idx == 10
     
 def test_5():
     target = 18
     idx = binarySearchNearestLarger(arr, target)
-    assert idx == 8
+    assert idx == 11
     
 def test_6():
     target = 3
@@ -65,12 +69,12 @@ def test_6():
 def test_7():
     target = 16
     idx = binarySearchNearestSmaller(arr, target)
-    assert idx == 7
+    assert idx == 10
     
 def test_8():
     target = 15
     idx = binarySearchNearestSmaller(arr, target)
-    assert idx == 6
+    assert idx == 9
     
 def test_9():
     target = 1
