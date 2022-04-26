@@ -26,3 +26,11 @@ Each long-poll request has a timeout to prevent holding the connection open inde
 - Best when we need real-time traffic from server or server will be sending multiple events to client
 
 
+### Gossip Protocols
+
+- problem of knowing when other nodes are dea in a distributed system
+- each node sends some data to a set of other nodes
+- data propogates through the system node by node like a virus
+- eventually data propogates to every node in the system
+- allows nodes to build a global map from limited local interactions
+- in distributed system, need at least two independent sources of information to mark a node down

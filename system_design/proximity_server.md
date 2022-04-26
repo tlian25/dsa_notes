@@ -1,4 +1,4 @@
-# Yelp or Proximity Server
+# Design Yelp (Proximity Server)
 
 ### High Level Ideas
 - QuadTree structure to segment locations into dynamic grid sizes and keep number of places per grid low
@@ -96,11 +96,11 @@ SELECT * FROM Places WHERE Latitude BETWEEN (X-D, X+D) and Longitude BETWEEN (Y-
 - advantage: evenly distributes number of places on each shard
 - disadvantage: places close together requires querying multiple shards
 
-**Fault Tolerance**
+
+### Fault Tolerance
 - secondary replica of each QuadTree server
 - brute-force recovery: iterate through whole database and filter LocationIDs using hash function to rebuild failed server
 - efficient recovery: keep a reverse index to map Places to QuadTree server, build HashMap where key=serverID, value=set of all Places kept on that server
-- 
 
 
 
