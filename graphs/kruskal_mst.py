@@ -36,6 +36,19 @@ class Graph:
     
     # Takes union of two sets X and Y
     def union(self, parent, rank, x, y):
-        pass
+        xroot = self.find(parent, x)
+        yroot = self.find(parent, y)
+
+        if rank[xroot] < rank[yroot]:
+            parent[xroot] = yroot
+        elif rank[yroot] < rank[xroot]:
+            parent[yroot] = xroot
+        else:
+            parent[yroot] = xroot
+            rank[xroot] += 1
+
+            
+
+        
         
         
