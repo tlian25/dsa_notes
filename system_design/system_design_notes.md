@@ -1,6 +1,19 @@
 # System Design Notes
 
 
+## Requirements Clarification
+1. **Users/Customers** - who will use the system? how will the sytem be used?
+2. **Scale** - how many read/write queries per second? how much data per request? spikes in traffic?
+3. **Performance** - expected read-to-write data delay? expected p99 latency for read queries?
+4. **Cost** - development cost considerations? maintenance cost considerations?
+
+
+
+
+
+
+## Concepts
+
 ### HTTP Long-Polling
 
 1. Client makes initial HTTP GET request and waits for response
@@ -34,3 +47,5 @@ Each long-poll request has a timeout to prevent holding the connection open inde
 - eventually data propogates to every node in the system
 - allows nodes to build a global map from limited local interactions
 - in distributed system, need at least two independent sources of information to mark a node down
+
+
