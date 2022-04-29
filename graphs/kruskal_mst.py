@@ -35,19 +35,80 @@ class Graph:
         return self.find(parent, parent[i])
     
     # Takes union of two sets X and Y
-    def union(self, parent, rank, x, y):
-        xroot = self.find(parent, x)
-        yroot = self.find(parent, y)
+    def union(self, parent, rank, parent_u, parent_v):
 
-        if rank[xroot] < rank[yroot]:
-            parent[xroot] = yroot
-        elif rank[yroot] < rank[xroot]:
-            parent[yroot] = xroot
+        # Attach smaller rank tree under root of higher rank tree
+        # Union by Rank
+        if rank[parent_u] < rank[parent_v]:
+            parent[parent_u] = parent_v
+        elif rank[parent_v] < rank[parent_u]:
+            parent[parent_v] = parent_u
+
+        # If ranks are the same, then arbitrarily make one root of other
+        # Increment its rank by one
         else:
-            parent[yroot] = xroot
-            rank[xroot] += 1
+            parent[parent_u] = parent_v
+            rank[parent_u] += 1
 
             
+    def kruskalmst(self):
+
+        mst = [] # to hold edges in MST
+        
+        edge_idx = 0 # index 
+        num_edges = 0 # Number of edges
+
+        # sort all edges in non-decreasing order of their weight
+        # create a copy if we are not allowed to change the given graph
+        # graph = list of (u, v, w) edges
+        self.graph = sorted(self.graph, key = lambda x: x[2])
+
+        parent = []
+
+        # Create V subsets with single elements
+        parent = [node for node in range(self.V)]
+        rank = [0 for node in range(self.V)]
+
+        # number of edges taken equal to V-1 to create spanning tree
+        while num_edges < self.V - 1:
+
+            # pick smallest edge and increment index for next iteration
+            u, v, w = self.graph[edge_idx]
+            edge_idx += 1
+
+            parent_u = self.find(parent, u)
+            parent_v = self.find(parent, v)
+
+            # If parents not the same, then we don't have a cycle and can join
+            if parent_u != parent_v:
+                num_edges += 1
+                self.union(parent, rank, parent_u, parent_v)
+                mst.append( (u,v,w) )
+            
+            # Else Do not include edge as it would cause a cycle
+        
+        print ("Edges in the constructed MST")
+        minimumCost = 0
+        for u, v, weight in mst:
+            minimumCost += weight
+            print("%d -- %d == %d" % (u, v, weight))
+        print("Minimum Spanning Tree" , minimumCost)
+
+
+
+
+
+# Driver code
+g = Graph(4)
+g.addEdge(0, 1, 10)
+g.addEdge(0, 2, 6)
+g.addEdge(0, 3, 5)
+g.addEdge(1, 3, 15)
+g.addEdge(2, 3, 4)
+ 
+# Function call
+g.kruskalmst()
+
 
         
         
