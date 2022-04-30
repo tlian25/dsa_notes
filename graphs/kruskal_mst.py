@@ -1,5 +1,6 @@
 # Kruskal's Minimum Spanning Tree Algorithm
 # https://www.geeksforgeeks.org/kruskals-minimum-spanning-tree-algorithm-greedy-algo-2/
+
 '''
 Given a connected and undirected graph, 
 a spanning tree of that graph is a subgraph that is 
