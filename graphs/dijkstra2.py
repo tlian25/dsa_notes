@@ -31,8 +31,10 @@ class Graph():
         
         while h:            
             d, u = heapq.heappop(h)
+            if u in processed:
+                continue
+
             processed.add(u)            
-            h = []            
             for v in range(self.V):
                 # Not yet processed and connected to current source u
                 if v not in processed and self.graph[u][v] > 0: 
