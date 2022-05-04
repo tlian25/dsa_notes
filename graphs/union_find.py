@@ -29,26 +29,28 @@ class Graph:
     
     def find_parent(self, i):
         if self.parent[i] == i:
-            return i # parent is self
+            return i # parent is self, marking node as a root
         return self.find_parent(self.parent[i]) # recursively find root
 
     
-    def union(self, x, y) -> None:
-        self.parent[x] = y
+    def union(self, parent_u, parent_v) -> None:
+        # Join together by setting parent of one node to the other node
+        # This effectively also joins u and v in the same component as no cycle was detected
+        self.parent[parent_u] = parent_v
 
     
     def isCyclic(self) -> bool:
 
-        for i in self.graph:
-            for j in self.graph[i]:
-                print(i, j, self.parent)
-                x = self.find_parent(i)
-                y = self.find_parent(j)
+        for u in self.graph:
+            for v in self.graph[u]:
+                print(u, v, self.parent)
+                parent_u = self.find_parent(u)
+                parent_v = self.find_parent(v)
 
-                if x == y: # share same root parent, so we have a cycle
+                if parent_u == parent_v: # share same root parent, so we have a cycle
                     return True
                 else:
-                    self.union(x, y) # Join so i and j have same parent thus marking as a connected component
+                    self.union(parent_u, parent_v) # Join so u and v have same parent thus marking as a connected component
 
         return False
 

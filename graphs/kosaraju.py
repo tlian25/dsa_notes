@@ -1,5 +1,5 @@
 # Kosaraju's Algorithm
-# Find connected components of a graph in linear time
+# Find connected components of a directed graph in linear time
 # Time complexity: O(2N) = O(N)
 # Two DFS cycles
 
