@@ -17,7 +17,6 @@ High level algorithm
 4. Repeat 2-3 until there are V-1 edges in spanning tree
 '''
 
-from collections import defaultdict
 
 class Graph:
     

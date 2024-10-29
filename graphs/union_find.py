@@ -28,9 +28,9 @@ class Graph:
 
     
     def find_parent(self, i):
-        if self.parent[i] == i:
-            return i # parent is self, marking node as a root
-        return self.find_parent(self.parent[i]) # recursively find root
+        while i != self.parent[i]:
+            i = self.parent[i]
+        return i # recursively find root
 
     
     def union(self, parent_u, parent_v) -> None:

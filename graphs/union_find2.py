@@ -7,9 +7,9 @@ class UnionFind:
             self.group[i] = i
       
     def find(self, node: int) -> int:
-        if self.group[node] != node:
-            self.group[node] = self.find(self.group[node])
-        return self.group[node]
+        while self.group[node] != node:
+            node = self.group[node]
+        return node
 
     def join(self, node1: int, node2: int) -> bool:
         group1 = self.find(node1)

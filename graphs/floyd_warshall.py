@@ -23,6 +23,7 @@ def relaxMatrix(matrix: List[List[int]], middle:int) -> List[List[int]]:
     
     n = len(matrix)
     
+    # Track min distance from i to j for any two nodes i and j
     A = [[0 for _ in range(n)] for _ in range(n)]
     
     for i in range(n):
