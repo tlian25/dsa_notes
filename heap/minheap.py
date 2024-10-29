@@ -29,20 +29,20 @@ class MinHeap:
         self.FRONT = 1
         
         
-    def parent(self, pos):
-        return pos // 2
+    def parent(self, idx):
+        return idx // 2
     
-    def leftChild(self, pos):
-        return 2 * pos
+    def leftChild(self, idx):
+        return 2 * idx
     
-    def rightChild(self, pos):
-        return 2 * pos + 1
+    def rightChild(self, idx):
+        return 2 * idx + 1
     
     
     # Leaf node is furthest down so must be in second half of array
     # Array doubles with each level in tree/heap
-    def isLeaf(self, pos):
-        if pos > (self.size // 2) and pos <= self.size:
+    def isLeaf(self, idx):
+        if idx > (self.size // 2) and idx <= self.size:
             return True
         return False
     
@@ -50,29 +50,29 @@ class MinHeap:
         self.Heap[pos1], self.Heap[pos2] = self.Heap[pos2], self.Heap[pos1]
         
         
-    def minHeapify(self, pos):
+    def minHeapify(self, idx):
         
         # Nothing to do if Leaf
-        if self.isLeaf(pos): return None
+        if self.isLeaf(idx): return None
         
-        leftChild = self.leftChild(pos)
-        rightChild = self.rightChild(pos)
+        leftChildIdx = self.leftChild(idx)
+        rightChildIdx = self.rightChild(idx)
         
-        if (self.Heap[pos] > self.Heap[leftChild] or
-            self.Heap[pos] > self.Heap[rightChild]):
+        if (self.Heap[idx] > self.Heap[leftChildIdx] or
+            self.Heap[idx] > self.Heap[rightChildIdx]):
             
             # Switch with smaller of left or right child
-            if self.Heap[leftChild] < self.Heap[rightChild]:
+            if self.Heap[leftChildIdx] < self.Heap[rightChildIdx]:
                 # Swap current and left child
                 # Recursively rebalance down the heap
-                self.swap(pos, leftChild)
-                self.minHeapify(leftChild)
+                self.swap(idx, leftChildIdx)
+                self.minHeapify(leftChildIdx)
                 
             else:
                 # Swap current and right child
                 # Recursively rebalance down the heap
-                self.swap(pos, rightChild)
-                self.minHeapify(rightChild)
+                self.swap(idx, rightChildIdx)
+                self.minHeapify(rightChildIdx)
                 
     
     
@@ -95,16 +95,16 @@ class MinHeap:
             
             
     def minHeap(self):
-        for pos in range(self.size//2, 0, -1):
-            self.minHeapify(pos)
+        for idx in range(self.size//2, 0, -1):
+            self.minHeapify(idx)
             
     
     def remove(self):
         
         # Pop off front element
         popped = self.Heap[self.FRONT]
-        # Swap last element to front
-        self.Heap[self.FRONT] = self.Heap[self.size]
+        # Swap last element to front and remove front element
+        self.Heap[self.FRONT], self.Heap[self.size] = self.Heap[self.size], None
         self.size -= 1
         # rebalance heap
         # Recursively swap with children if larger

@@ -23,52 +23,55 @@ def binarySearch(arr:list, target:int, low:int, high:int) -> int:
         return binarySearch(arr, target, mid+1, high)
     
 
-
+# Binary Search iterative
 def binarySearch_iter(arr, target):
-    i = 0
-    j = len(arr)
+    l = 0
+    r = len(arr)
     
-    while i < j:
-        mid = (i+j) // 2
+    while l < r:
+        mid = (l+r) // 2
         if arr[mid] == target:
             return mid
         elif target < arr[mid]:
-            j = mid
+            r = mid
         else:
-            i = mid+1
+            l = mid+1
             
     return -1
+    # Alternatively
+    # return r # for first index > than target
+    # return l # for first index <= target
 
 
 
 # Modify to handle duplicates
 def binarySearch_LeftOccurrance(arr, target):
-    i = 0
-    j = len(arr)
+    l = 0
+    r = len(arr)
     
-    while i < j-1:
-        m = (i+j) // 2
+    while l <= r:  # Allow equality to keep shifting
+        m = (l+r) // 2
         # keep shifting right side <=
         if arr[m] >= target:
-            j = m
+            r = m
         else:
-            i = m
-    return j
+            l = m
+    return r
 
 
 def binarySearch_RightOccurrance(arr, target):
-    i = 0 
-    j = len(arr)
+    l = 0 
+    r = len(arr)
     
-    while i < j-1:
-        m = (i+j) // 2
+    while l <= r:  # Allow equality to keep shifting
+        m = (l+r) // 2
         # keep shifting left side =>
         if arr[m] <= target:
-            i = m
+            l = m
         else:
-            j = m
+            r = m
             
-    return i
+    return l
         
             
 
