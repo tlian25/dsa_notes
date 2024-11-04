@@ -72,11 +72,12 @@ class Solution(object):
             if char != bogusCharacter:
                 trimmedString.append(char)
         return "".join(trimmedString)
-            
-if __name__ == "__main__":
-    solution = Solution()
-    s = "aabab"
-    print("the longest palindrome", solution.longestPalindrome("aabab"))
+
+
+def test1():
+    word = "aabab"
+    s = Solution().longestPalindrome(word)
+    assert s == "aba"
 
 """
 output:

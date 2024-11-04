@@ -1,6 +1,8 @@
 # Egg Drop Problem
 import sys
 
+
+# DP approach
 class Solution:
     def eggDrop(self, K: int, N: int) -> int:
 		# M x K --> Given M moves and K eggs, what is the maximum floor we can check ?
@@ -23,7 +25,7 @@ class Solution:
                 
                 
                     
-
+# Method 2 - Same DP approach without solution class
 MAX = 1000
 memo = [[-1 for i in range(MAX)] for j in range(MAX)]
 def solveEggDrop(n, k):
@@ -50,45 +52,13 @@ def solveEggDrop(n, k):
 
 
 
-# Function to get minimum number of trials
-# needed in worst case with n eggs and k floors
-def eggDrop(eggs, floors):
-
-    # If there are no floors, then no trials
-    # needed. OR if there is one floor, one
-    # trial needed.
-    if (floors <= 1):
-        return floors
-
-    # We need k trials for one egg
-    # and k floors
-    if (eggs == 1):
-        return floors
-
-    min_trials = sys.maxsize
-
-    # Consider all droppings from 1st
-    # floor to kth floor and return
-    # the minimum of these values plus 1.
-    for floor in range(1, floors + 1):
-        trials = max(
-            # Case 1: Egg breaks -> check every floor below current floor with 1 less egg
-            eggDrop(eggs - 1, floor - 1),
-            # Case 2: Egg doesn't break -> check every floor above current floor with same number of eggs
-            eggDrop(eggs, floors - floor)
-        ) + 1  # And add 1 to trial count since we dropped at current floor
-        
-        min_trials = min(min_trials, trials)
-
-    return min_trials
-
-
 def test1():
     n = 2
     k = 100
-    s = Solution().eggDrop(n, k)
-    #s = solveEggDrop(n,k)
-    print(s)
+    s1 = Solution().eggDrop(n, k)
+    s2 = solveEggDrop(n,k)
+    assert s1 == 14
+    assert s2 == 14
 
 test1()
 
