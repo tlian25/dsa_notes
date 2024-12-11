@@ -1,5 +1,6 @@
 # Implementation of AVL tree
 
+
 class TreeNode:
     def __init__(self, val):
         self.val = val
@@ -14,9 +15,9 @@ class TreeNode:
 class AVLTree:
     def __init__(self):
         self.root = None
-    
+
     def insert(self, root, key):
-        
+
         # Empty tree, so insert is a new node set to be root
         if not root:
             return TreeNode(key)
@@ -27,8 +28,7 @@ class AVLTree:
             root.right = self.insert(root.right, key)
 
         # Update heights after insertion
-        root.height = 1 + max(self.getHeight(root.left), 
-                             self.getHeight(root.right))
+        root.height = 1 + max(self.getHeight(root.left), self.getHeight(root.right))
 
         # Get Balance factor
         balance = self.getBalance(root)
@@ -52,28 +52,24 @@ class AVLTree:
             root.right = self.rightRotate(root.right)
             return self.leftRotate(root)
 
-
     def getHeight(self, root):
-        if not root: 
+        if not root:
             return 0
         return root.height
-
 
     def getBalance(self, root):
         if not root:
             return 0
         return self.getHeight(root.left) - self.getHeight(root.right)
 
-
     def printTree(self, root):
         if not root:
-            print('# ', end="")
+            print("# ", end="")
             return None
 
-        print(f"{root} ", end = "")
+        print(f"{root} ", end="")
         self.printTree(root.left)
         self.printTree(root.right)
-
 
     # Rotate node z's right child with node z
     # Right child moving left
@@ -86,15 +82,12 @@ class AVLTree:
         z.right = T2
 
         # Update Heights -> update z first because it's now the child node
-        z.height = 1 + max(self.getHeight(z.left),
-                            self.getHeight(z.right))
+        z.height = 1 + max(self.getHeight(z.left), self.getHeight(z.right))
 
-        y.height = 1 + max(self.getHeight(y.left),
-                           self.getHeight(y.right))
+        y.height = 1 + max(self.getHeight(y.left), self.getHeight(y.right))
 
         # Return new root -> previous right child
         return y
-
 
     # Rotate node z's left child with node z
     # Left child moving right
@@ -108,15 +101,12 @@ class AVLTree:
         z.left = T2
 
         # Update Heights -> update z first because it's now the child node
-        z.height = 1 + max(self.getHeight(z.left),
-                            self.getHeight(z.right))
-   
-        y.height = 1 + max(self.getHeight(y.left),
-                            self.getHeight(y.right))
-   
-        # Return new root -> previous left child
-        return y 
+        z.height = 1 + max(self.getHeight(z.left), self.getHeight(z.right))
 
+        y.height = 1 + max(self.getHeight(y.left), self.getHeight(y.right))
+
+        # Return new root -> previous left child
+        return y
 
 
 ### EXAMPLE
@@ -132,4 +122,3 @@ root = avl.insert(root, 50)
 root = avl.insert(root, 25)
 
 avl.printTree(root)
-

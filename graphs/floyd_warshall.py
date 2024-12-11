@@ -6,34 +6,31 @@
 from typing import List
 import numpy as np
 
-inf = float('inf')
+inf = float("inf")
 
 
 # Matrix graph representation
 # where A0[i][j] = distance of path from i -> j
-A = [[0, 3, inf, 7],
-      [8, 0, 2, inf],
-      [5, inf, 0, 1],
-      [2, inf, inf, 0]]
-
+A = [[0, 3, inf, 7], [8, 0, 2, inf], [5, inf, 0, 1], [2, inf, inf, 0]]
 
 
 # Compare direct path of previous matrix with going through a "middle" point
-def relaxMatrix(matrix: List[List[int]], middle:int) -> List[List[int]]:
-    
+def relaxMatrix(matrix: List[List[int]], middle: int) -> List[List[int]]:
+
     n = len(matrix)
-    
+
     # Track min distance from i to j for any two nodes i and j
     A = [[0 for _ in range(n)] for _ in range(n)]
-    
+
     for i in range(n):
         for j in range(n):
             # Take the min of:
             # - previous direct path i->j
             # - previous path i->middle->j
             A[i][j] = min(matrix[i][j], matrix[i][middle] + matrix[middle][j])
-            
+
     return A
+
 
 # Base Graph Matrix
 print("Base Graph Matrix")
@@ -68,22 +65,22 @@ print(np.matrix(A3))
 print()
 
 
-
 ##### Putting it all together in a single function
 
+
 def APSP(matrix: List[List[int]]) -> List[List[int]]:
-    
+
     n = len(matrix)
     # Loop through possible middle characters
-    
+
     for m in range(n):
         # Helper function
         # matrix = relaxMatrix(matrix, m)
-        
+
         for i in range(n):
             for j in range(n):
                 matrix[i][j] = min(matrix[i][j], matrix[i][m] + matrix[m][j])
-    
+
     return matrix
 
 
@@ -92,4 +89,3 @@ apsp = APSP(A)
 print("All Pairs Shortest Path")
 print(np.matrix(apsp))
 print()
-    

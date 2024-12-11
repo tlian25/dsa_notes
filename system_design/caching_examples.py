@@ -6,33 +6,34 @@ import time
 class BackingStore:
     def __init__(self):
         self.data = []
-    
+
     def write(self, datum):
-        print('Started writing to backing store.')
+        print("Started writing to backing store.")
         time.sleep(2)
         self.data.append(datum)
-        print('Finish writing to backing store.')
-        
+        print("Finish writing to backing store.")
+
     def read(self, index):
-        print('Started reading from backing store.')
+        print("Started reading from backing store.")
         time.sleep(2)
-        print('Finished reading from backing store.')
+        print("Finished reading from backing store.")
         return self.data[index]
-    
+
+
 class Cache:
     def __init__(self):
         self.data = []
-    
+
     def write(self, datum):
-        print('Started writing to cache.')
+        print("Started writing to cache.")
         self.data.append(datum)
-        print('Finish writing to cache.')
-        
+        print("Finish writing to cache.")
+
     def read(self, index):
-        print('Started reading from cache.')
-        print('Finished reading from cache.')
-        return self.data[index] 
-    
+        print("Started reading from cache.")
+        print("Finished reading from cache.")
+        return self.data[index]
+
 
 #### Write-through Cache
 # data is written to cache and backing store at the same time
@@ -45,8 +46,8 @@ class Cache:
 def write_through(cache, backing_store, datum):
     cache.write(datum)
     backing_store.write(datum)
-    
-    
+
+
 #### Write-around
 # Data only written to backing store without writing to cache
 # I/O confirmed after data store only
@@ -57,20 +58,16 @@ def write_through(cache, backing_store, datum):
 # -: reading recently written data will hit a cache miss
 def write_around(backing_store, datum):
     backing_store.write(datum)
-    
-    
+
+
 #### Write-back
-# Data only written to cache 
+# Data only written to cache
 # I/O confirmed after cache only
 # Good for mixed workloads as read/write has similar response time levels
 # In practice, we can add resiliency by duplicating writes
-# 
+#
 # +: lower latency writes and high throughput for write-intensive apps
 # -: data availability and data loss risk if cache crashes
 def write_back(cache, datum):
     cache.write(datum)
     # Kick-off asynchronous process to write to backing store.
-    
-    
-
-    

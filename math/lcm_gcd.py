@@ -2,7 +2,8 @@
 
 from functools import reduce
 
-def gcd(a:int, b:int) -> int:
+
+def gcd(a: int, b: int) -> int:
     while b > 0:
         a, b = b, a % b
     return a
@@ -18,5 +19,3 @@ def lcm(a: int, b: int) -> int:
 
 def lcm_list(lst: list) -> int:
     return reduce(lcm, lst)
-
-

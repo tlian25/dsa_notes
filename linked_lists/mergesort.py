@@ -1,19 +1,21 @@
 from typing import Optional
 
+
 # Definition for singly-linked list.
 class ListNode:
     def __init__(self, val=0, next=None):
         self.val = val
         self.next = next
 
-'''
+
+"""
 Mergesorting a linked list
 1. Use a fast/slow pointer approach to find middle of linked list
 2. Disjoin the two halfs of the LL
 3. Stitch two halfs together in sort order using merge function
 4. r
 
-'''
+"""
 
 
 class Solution:
@@ -36,7 +38,6 @@ class Solution:
         l, r = self.sortList(head), self.sortList(start2ndHalf)
         return self.merge(l, r)
 
-
     def merge(self, l, r):
         if not l or not r:
             return l or r
@@ -54,7 +55,6 @@ class Solution:
 
             p = p.next
 
-        # which every list remains 
+        # which every list remains
         p.next = l or r
         return root.next
-

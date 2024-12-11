@@ -2,10 +2,10 @@ class UnionFind:
     def __init__(self, size: int) -> None:
         self.group = [0] * size
         self.rank = [0] * size
-        
+
         for i in range(size):
             self.group[i] = i
-      
+
     def find(self, node: int) -> int:
         while self.group[node] != node:
             node = self.group[node]
@@ -14,7 +14,7 @@ class UnionFind:
     def join(self, node1: int, node2: int) -> bool:
         group1 = self.find(node1)
         group2 = self.find(node2)
-        
+
         # node1 and node2 already belong to same group.
         if group1 == group2:
             return False
@@ -28,9 +28,8 @@ class UnionFind:
             self.rank[group2] += 1
 
         return True
-    
-    
-    
+
+
 def test_1():
     g = UnionFind(5)
     edges = [(0, 1), (1, 2), (2, 3), (4, 3), (0, 4)]

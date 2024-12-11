@@ -4,14 +4,15 @@
 
 from random import randint
 
+
 class MinHeap:
     def __init__(self):
-        self.h = [float('-inf')]
+        self.h = [float("-inf")]
 
     def push(self, val) -> None:
         # add to last element in list and bubble up
         self.h.append(val)
-        idx = len(self.h)-1
+        idx = len(self.h) - 1
         parentidx = self.parentIdx(idx)
         while self.h[idx] < self.h[parentidx]:
             self.swap(idx, parentidx)
@@ -20,18 +21,19 @@ class MinHeap:
 
     def pop(self) -> int:
         # swap with last element and pop off
-        self.swap(1, len(self.h)-1)
+        self.swap(1, len(self.h) - 1)
         retval = self.h.pop()
         self.pushdown(1)
         return retval
-    
-    
+
     def pushdown(self, idx):
         leftidx = self.leftChildIdx(idx)
         rightidx = self.rightChildIdx(idx)
 
         greaterthanleft = bool(leftidx < len(self.h) and self.h[idx] > self.h[leftidx])
-        greaterthanright = bool(rightidx < len(self.h) and self.h[idx] > self.h[rightidx])
+        greaterthanright = bool(
+            rightidx < len(self.h) and self.h[idx] > self.h[rightidx]
+        )
 
         if greaterthanleft and greaterthanright:
             if self.h[leftidx] < self.h[rightidx]:
@@ -47,10 +49,8 @@ class MinHeap:
             self.swap(idx, rightidx)
             self.pushdown(rightidx)
 
-
     def leftChildIdx(self, idx) -> int:
         return idx * 2
-
 
     def rightChildIdx(self, idx) -> int:
         return idx * 2 + 1
@@ -63,9 +63,9 @@ class MinHeap:
 
     def swap(self, i, j) -> None:
         self.h[i], self.h[j] = self.h[j], self.h[i]
-    
+
     def __repr__(self):
-        return f'{self.h}'
+        return f"{self.h}"
 
 
 def test1():
@@ -81,8 +81,8 @@ def test1():
     h.push(50)
     h.push(50)
     h.push(100)
-    assert h.pop() == 50 
-    assert h.pop() == 50 
+    assert h.pop() == 50
+    assert h.pop() == 50
     assert h.pop() == 75
 
 
@@ -93,7 +93,6 @@ def test2():
     h = MinHeap()
     for n in nums:
         h.push(n)
-    
+
     for n in sorted(nums):
         assert h.pop() == n
-    
