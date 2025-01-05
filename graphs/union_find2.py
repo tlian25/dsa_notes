@@ -24,8 +24,8 @@ class UnionFind:
         elif self.rank[group1] < self.rank[group2]:
             self.group[group1] = group2
         else:
-            self.group[group1] = group2
-            self.rank[group2] += 1
+            self.group[group2] = group1
+            self.rank[group1] += 1
 
         return True
 
@@ -33,6 +33,7 @@ class UnionFind:
 def test_1():
     g = UnionFind(5)
     edges = [(0, 1), (1, 2), (2, 3), (4, 3), (0, 4)]
+    cycle = False
     for u, v in edges:
         if not g.join(u, v):
             cycle = True
@@ -51,3 +52,17 @@ def test_2():
             break
 
     assert cycle == False
+
+def test_3():
+    g = UnionFind(9)
+    edges = [(0, 1), (1, 2), (2, 3), (0, 4), (5, 6), (5, 7), (6, 8)]
+    cycle = False
+    for u, v in edges:
+        if not g.join(u, v):
+            cycle = True
+            break
+    
+    print(g.group)
+    print(g.rank)
+
+    assert cycle == False 
