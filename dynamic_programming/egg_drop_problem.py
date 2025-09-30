@@ -1,5 +1,11 @@
 # Egg Drop Problem
-import sys
+"""
+The egg drop problem is a mathematical puzzle asking for the minimum number of drops,
+in the worst-case scenario, to identify the "critical floor" from which an egg will
+break when dropped from a building with a given number of floors and a finite number
+of eggs. The puzzle involves a trade-off: more drops can be made between floors if you
+have more eggs, but you lose eggs with each unsuccessful drop. 
+"""
 
 
 # DP approach
@@ -19,9 +25,8 @@ class Solution:
         for moves in range(1, M + 1):  # Moves
             for eggs in range(1, K + 1):  # Eggs
                 dp[moves][eggs] = 1 + dp[moves - 1][eggs] + dp[moves - 1][eggs - 1]
-                if (
-                    dp[moves][eggs] >= N
-                ):  # if we reach given floor N, then we can return number of moves
+                if dp[moves][eggs] >= N:
+                    # if we reach given floor N, then we can return number of moves
                     return moves
 
 
@@ -57,12 +62,16 @@ def test1():
     n = 2
     k = 100
     s1 = Solution().eggDrop(n, k)
-    s2 = solveEggDrop(n, k)
     assert s1 == 14
+
+def test2():
+    n = 2
+    k = 100
+    s2 = solveEggDrop(n, k)
     assert s2 == 14
 
-
 test1()
+test2()
 
 # 0 1 2 3 4 5 6 7 8 9 10
 # i = 0, j = 10
