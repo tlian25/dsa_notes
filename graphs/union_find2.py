@@ -53,6 +53,7 @@ def test_2():
 
     assert cycle == False
 
+
 def test_3():
     g = UnionFind(9)
     edges = [(0, 1), (1, 2), (2, 3), (0, 4), (5, 6), (5, 7), (6, 8)]
@@ -61,8 +62,8 @@ def test_3():
         if not g.join(u, v):
             cycle = True
             break
-    
+
     print(g.group)
     print(g.rank)
 
-    assert cycle == False 
+    assert cycle == False

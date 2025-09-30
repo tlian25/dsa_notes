@@ -4,6 +4,7 @@
 # Time complexity - O(n^3)
 
 from typing import List
+
 import numpy as np
 
 inf = float("inf")

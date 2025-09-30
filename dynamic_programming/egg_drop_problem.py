@@ -64,11 +64,13 @@ def test1():
     s1 = Solution().eggDrop(n, k)
     assert s1 == 14
 
+
 def test2():
     n = 2
     k = 100
     s2 = solveEggDrop(n, k)
     assert s2 == 14
+
 
 test1()
 test2()

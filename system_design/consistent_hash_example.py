@@ -1,9 +1,10 @@
 import bisect
-from cgi import test
 import hashlib
 import random
-import numpy
+from cgi import test
 from collections import defaultdict
+
+import numpy
 
 
 # Arbitrary node class to represent a host or client

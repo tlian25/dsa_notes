@@ -1,6 +1,6 @@
 # Notes on constructing Trees from different representations
 
-from typing import Optional, List
+from typing import List
 
 
 class TreeNode:

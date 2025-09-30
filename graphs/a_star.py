@@ -13,8 +13,8 @@
 # H cost = distance from destination (heuristic), think distance left to go
 # F cost = G + H = total cost (want to minimize), think minimum path between two points
 
-from heapq import *
 from collections import defaultdict
+from heapq import *
 
 
 class Graph:
